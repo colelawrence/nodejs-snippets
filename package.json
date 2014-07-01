@@ -1,0 +1,12 @@
+{
+  "name": "Parse-User-init",
+  "version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {
+    "coffee-script": "~1.7.1",
+    "chalk": "0.4.0",
+    "request":"2.36.0",
+    "parse":"1.2.17",
+    "jade-to-wire":"0.0.12"
+  }
+}

@@ -1,0 +1,31 @@
+<wire>
+   <datasources>
+      <datasource name="field" source="" query="//image" providertype="xml" parsenamespaces="yes" />
+   </datasources>
+   <classes>
+      <class name="article-list-item">
+         <panel name="article-[param:dataSourceIndex]" width="95%" height="50%" clip="yes" _dataSourceIndex="[param:dataSourceIndex]" align="center" valign="center" background="#000000" bordercolor="00ee00" borderwidth="3">
+            <image name="catz" height="100%" align="center" valign="center" url="[param:url]" />
+         </panel>
+      </class>
+      <class name="refresh">
+         <wait name="wait" width="30" height="30" color="ffffff" align="center" valign="center" />
+      </class>
+   </classes>
+   <main>
+      <list name="feed" alias="IMAGES" pullclass="refresh" pullto="100" onpull="refreshtask" datasource="field" width="100%" height="100%" valign="center" align="center" background="#000000" orientation="vertical">
+         <object name="feed" class="article-list-item" dataSourceIndex="[param:dataSourceIndex]" url="[param:url]" />
+      </list>
+   </main>
+   <actions>
+      <action name="load" oninit="yes">
+         <assign property="datasource:field.source" value="http://thecatapi.com/api/images/get?format=xml&amp;results_per_page=200" />
+      </action>
+      <action name="refreshtask">
+         <assign property="datasource:field.source" value="http://thecatapi.com/api/images/get?format=xml&amp;results_per_page=200" />
+      </action>
+      <action name="reset" datasource="field" datasourceevent="querycomplete">
+         <event target="IMAGES" type="reset" />
+      </action>
+   </actions>
+</wire>
